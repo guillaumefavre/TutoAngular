@@ -11,7 +11,8 @@ const ARTISTS: Artist[] = [
   { id: 2, name: 'Angus Young', speciality: 'guitar'  },
   { id: 3, name: 'Slash', speciality: 'guitar'  },
   { id: 4, name: 'Mick Jagger', speciality: 'singing'  },
-  { id: 5, name: 'Roger Waters', speciality: 'bass'  }
+  { id: 5, name: 'Roger Waters', speciality: 'bass'  },
+  { id: 6, name: 'Jimi Hendrix', speciality: 'guitar'  }
 ];
 
 @Component({
@@ -20,7 +21,6 @@ const ARTISTS: Artist[] = [
   styleUrls: ['./app.component.css'],
   template: `
   <h1>{{title}}</h1>
-  <h2>My Artists</h2>
   <ul class="artists">
     <li *ngFor="let artist of artists">
     <span class="badge">{{artist.id}}</span> {{artist.name}} is a {{artist.speciality}} hero
