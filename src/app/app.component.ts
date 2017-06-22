@@ -1,10 +1,6 @@
 import { Component } from '@angular/core';
 
-export class Artist {
-  id: number;
-  name: string;
-  speciality: string;
-}
+import { Artist } from './artist';
 
 const ARTISTS: Artist[] = [
   { id: 1, name: 'Keyth Richards', speciality: 'guitar' },
@@ -22,25 +18,14 @@ const ARTISTS: Artist[] = [
   template: `
   <h1>{{title}}</h1>
 
-  <div *ngIf="selectedArtist">
-    <h2>{{selectedArtist.name}} details</h2>
-    <div><label>id: </label>{{selectedArtist.id}}</div>
-    <div>
-        <label>Name: </label>
-        <input [(ngModel)]="selectedArtist.name" placeholder="name"/>
-    </div>
-    <div>
-        <label>Speciality: </label>
-        <input [(ngModel)]="selectedArtist.speciality" placeholder="speciality"/>
-    </div>    
-  </div>
-
   <ul class="artists">
     <li *ngFor="let artist of artists" 
       [class.selected]="artist === selectedArtist"
       (click)="onSelect(artist)">
       <span class="badge">{{artist.id}}</span> {{artist.name}} is a {{artist.speciality}} hero
   </ul>
+  <!-- Affichage du composant ArtistDetail. [artist] correspond à l'imput utilisé dans ce composant. -->
+  <artist-detail [artist]="selectedArtist"></artist-detail>
   `,
   styles: [`
   .selected {
