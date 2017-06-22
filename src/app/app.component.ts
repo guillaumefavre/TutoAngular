@@ -21,9 +21,25 @@ const ARTISTS: Artist[] = [
   styleUrls: ['./app.component.css'],
   template: `
   <h1>{{title}}</h1>
+
+  <div *ngIf="selectedArtist">
+    <h2>{{selectedArtist.name}} details</h2>
+    <div><label>id: </label>{{selectedArtist.id}}</div>
+    <div>
+        <label>Name: </label>
+        <input [(ngModel)]="selectedArtist.name" placeholder="name"/>
+    </div>
+    <div>
+        <label>Speciality: </label>
+        <input [(ngModel)]="selectedArtist.speciality" placeholder="speciality"/>
+    </div>    
+  </div>
+
   <ul class="artists">
-    <li *ngFor="let artist of artists">
-    <span class="badge">{{artist.id}}</span> {{artist.name}} is a {{artist.speciality}} hero
+    <li *ngFor="let artist of artists" 
+      [class.selected]="artist === selectedArtist"
+      (click)="onSelect(artist)">
+      <span class="badge">{{artist.id}}</span> {{artist.name}} is a {{artist.speciality}} hero
   </ul>
   `,
   styles: [`
@@ -79,4 +95,9 @@ const ARTISTS: Artist[] = [
 export class AppComponent {
   title = 'Rock\'n Roll Hall of Fame';
   artists = ARTISTS;
+  selectedArtist: Artist;
+
+  onSelect(artist: Artist): void {
+    this.selectedArtist = artist;
+  }
 }
