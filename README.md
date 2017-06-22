@@ -1,1 +1,1 @@
-Appli pour tuto Angular
+Project based on Angular tuto (https://angular.io/tutorial)
