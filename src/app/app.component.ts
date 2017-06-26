@@ -2,14 +2,9 @@ import { Component } from '@angular/core';
 
 import { Artist } from './artist';
 
-const ARTISTS: Artist[] = [
-  { id: 1, name: 'Keyth Richards', speciality: 'guitar' },
-  { id: 2, name: 'Angus Young', speciality: 'guitar'  },
-  { id: 3, name: 'Slash', speciality: 'guitar'  },
-  { id: 4, name: 'Mick Jagger', speciality: 'singing'  },
-  { id: 5, name: 'Roger Waters', speciality: 'bass'  },
-  { id: 6, name: 'Jimi Hendrix', speciality: 'guitar'  }
-];
+import { ArtistService } from './artist.service';
+
+
 
 @Component({
   selector: 'app-root',
@@ -75,14 +70,25 @@ const ARTISTS: Artist[] = [
     margin-right: .8em;
     border-radius: 4px 0 0 4px;
   }
-`]
+`],
+  providers: [ArtistService]
 })
 export class AppComponent {
   title = 'Rock\'n Roll Hall of Fame';
-  artists = ARTISTS;
+  artists: Artist[];
   selectedArtist: Artist;
+
+  constructor(private artistService: ArtistService) { }
 
   onSelect(artist: Artist): void {
     this.selectedArtist = artist;
+  }
+
+  getArtists(): void {
+    this.artists = this.artistService.getArtists();
+  }
+
+  ngOnInit(): void {
+    this.getArtists();
   }
 }
