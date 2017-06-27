@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { Artist } from './artist';
-
 import { ArtistService } from './artist.service';
 
 
@@ -73,7 +72,7 @@ import { ArtistService } from './artist.service';
 `],
   providers: [ArtistService]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'Rock\'n Roll Hall of Fame';
   artists: Artist[];
   selectedArtist: Artist;
@@ -85,7 +84,7 @@ export class AppComponent {
   }
 
   getArtists(): void {
-    this.artists = this.artistService.getArtists();
+    this.artistService.getArtists().then(artists => this.artists = artists);
   }
 
   ngOnInit(): void {
