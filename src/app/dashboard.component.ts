@@ -1,7 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
+import { Artist } from './artist';
+import { ArtistService } from './artist.service';
 
 @Component({
   selector: 'my-dashboard',
-  template: '<h3>My Dashboard</h3>'
+  templateUrl: './dashboard.component.html'
 })
-export class DashboardComponent { }
+
+export class DashboardComponent implements OnInit {
+
+  artists: Artist[] = [];
+
+  constructor(private artistService: ArtistService) { }
+
+  ngOnInit(): void {
+    this.artistService.getArtists()
+      .then(artists => this.artists = artists.slice(1, 3));
+  }
+}
