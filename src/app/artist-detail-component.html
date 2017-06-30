@@ -1,0 +1,13 @@
+   <div *ngIf="artist">
+    <h2>{{artist.name}} details</h2>
+    <div><label>id: </label>{{artist.id}}</div>
+    <div>
+        <label>Name: </label>
+        <input [(ngModel)]="artist.name" placeholder="name"/>
+    </div>
+    <div>
+        <label>Speciality: </label>
+        <input [(ngModel)]="artist.speciality" placeholder="speciality"/>
+    </div>    
+    <button (click)="goBack()">Back</button>
+  </div>

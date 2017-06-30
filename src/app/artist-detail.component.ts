@@ -1,24 +1,33 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Location }                 from '@angular/common';
 
 import { Artist } from './artist';
+import { ArtistService } from './artist.service';
+
+import 'rxjs/add/operator/switchMap';
 
 @Component({
   selector: 'artist-detail',
-  template: ` 
-   <div *ngIf="artist">
-    <h2>{{artist.name}} details</h2>
-    <div><label>id: </label>{{artist.id}}</div>
-    <div>
-        <label>Name: </label>
-        <input [(ngModel)]="artist.name" placeholder="name"/>
-    </div>
-    <div>
-        <label>Speciality: </label>
-        <input [(ngModel)]="artist.speciality" placeholder="speciality"/>
-    </div>    
-  </div>
-  `
+  templateUrl: './artist-detail-component.html'
 })
-export class ArtistDetailComponent {
+export class ArtistDetailComponent implements OnInit {
 	@Input() artist: Artist;
+
+  constructor(
+    private artistService: ArtistService,
+    private route: ActivatedRoute,
+    private location: Location
+  ) {}
+
+  ngOnInit(): void {
+    this.route.paramMap
+      .switchMap((params: ParamMap) => this.artistService.getArtist(+params.get('id'))) // Extraction du paramètre "id". Le '+' permet de convertir l'id de string en number
+      .subscribe(artist => this.artist = artist);
+  }
+
+  // Méthode permettant de retourner en arrière dans l'historique du navigateur (rendu possible grâce au service Location)
+  goBack(): void {
+    this.location.back();
+  }
 }

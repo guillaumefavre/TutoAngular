@@ -21,19 +21,24 @@ import { DashboardComponent } from './dashboard.component'
     BrowserModule,
     FormsModule, // <-- import the FormsModule before binding with [(ngModel)]
     RouterModule.forRoot([ // Router is composed by an array of route definitions (two parts : path and component)
-    {
-	  path: '',
-	  redirectTo: '/dashboard',
-	  pathMatch: 'full'
-	},{
-      path: 'artists',
-      component: ArtistsComponent // Component that the router create when navigating to this route
-    },
-    {
-	  path: 'dashboard',
-	  component: DashboardComponent
-	}
-  ])
+      {
+    	  path: '',
+    	  redirectTo: '/dashboard',
+    	  pathMatch: 'full'
+    	},
+      {
+        path: 'artists',
+        component: ArtistsComponent // Component that the router create when navigating to this route
+      },
+      {
+    	  path: 'dashboard',
+    	  component: DashboardComponent
+  	  },
+      {
+        path: 'detail/:id', // les ':' indiquent que c'est un paramètre
+        component: ArtistDetailComponent
+      },
+    ])
   ],
   providers: [ArtistService],
   bootstrap: [AppComponent]

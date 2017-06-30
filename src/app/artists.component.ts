@@ -17,7 +17,7 @@ import { ArtistService } from './artist.service';
       (click)="onSelect(artist)">
       <span class="badge">{{artist.id}}</span> {{artist.name}} is a {{artist.speciality}} hero
   </ul>
-  <!-- Affichage du composant ArtistDetail. [artist] correspond à l'imput utilisé dans ce composant. -->
+  <!-- Affichage du composant ArtistDetail. [artist] correspond à l'input utilisé dans ce composant. -->
   <artist-detail [artist]="selectedArtist"></artist-detail>
   `,
   styles: [`

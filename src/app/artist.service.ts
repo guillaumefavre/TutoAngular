@@ -15,4 +15,9 @@ export class ArtistService {
 	    setTimeout(() => resolve(this.getArtists()), 2000);
 	  });
 	}
+
+	getArtist(id: number): Promise<Artist> {
+	  return this.getArtists()
+	             .then(artists => artists.find(artist => artist.id === id));
+	}
 }
