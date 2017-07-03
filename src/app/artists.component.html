@@ -1,0 +1,12 @@
+  <ul class="artists">
+    <li *ngFor="let artist of artists" 
+      [class.selected]="artist === selectedArtist"
+      (click)="onSelect(artist)">
+      <span class="badge">{{artist.id}}</span> {{artist.name}} is a {{artist.speciality}} hero
+  </ul>
+  <div *ngIf="selectedArtist">
+    <h2>
+      {{selectedArtist.name | uppercase}} is my artist
+    </h2>
+    <button (click)="gotoDetail()">View Details</button>
+  </div>
