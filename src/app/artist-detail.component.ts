@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Location }                 from '@angular/common';
 
@@ -9,10 +9,11 @@ import 'rxjs/add/operator/switchMap';
 
 @Component({
   selector: 'artist-detail',
-  templateUrl: './artist-detail-component.html'
+  templateUrl: './artist-detail-component.html',
+  styleUrls: [ './artist-detail.component.css' ]
 })
 export class ArtistDetailComponent implements OnInit {
-	@Input() artist: Artist;
+	artist: Artist;
 
   constructor(
     private artistService: ArtistService,
