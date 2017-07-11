@@ -31,4 +31,10 @@ export class ArtistDetailComponent implements OnInit {
   goBack(): void {
     this.location.back();
   }
+
+  // Méthode permettant d'appeler le service de sauvegarde de l'artiste avant de revenir à la page précédente
+  save(): void {
+  this.artistService.update(this.artist)
+    .then(() => this.goBack());
+}
 }

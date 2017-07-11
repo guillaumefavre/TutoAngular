@@ -12,6 +12,8 @@ export class ArtistService {
 
 	private artistsUrl = 'api/artistsDB';  // URL to web api (cf. in-memory-data.service.ts)
 
+	private headers = new Headers({'Content-Type': 'application/json'});
+
 	constructor(private http: Http) { }
 
 	getArtists(): Promise<Artist[]> {
@@ -39,5 +41,14 @@ export class ArtistService {
 	    // Simulate server latency with 2 second delay
 	    setTimeout(() => resolve(this.getArtists()), 2000);
 	  });
+	}
+
+	update(artist: Artist): Promise<Artist> {
+	  const url = `${this.artistsUrl}/${artist.id}`;
+	  return this.http
+	    .put(url, JSON.stringify(artist), {headers: this.headers})
+	    .toPromise()
+	    .then(() => artist)
+	    .catch(this.handleError);
 	}
 }
