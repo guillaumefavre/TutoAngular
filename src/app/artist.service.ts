@@ -59,4 +59,12 @@ export class ArtistService {
 	    .then(res => res.json().data as Artist)
 	    .catch(this.handleError);
 	}
+
+	delete(id: number): Promise<void> {
+	  const url = `${this.artistsUrl}/${id}`;
+	  return this.http.delete(url, {headers: this.headers})
+	    .toPromise()
+	    .then(() => null)
+	    .catch(this.handleError);
+	}
 }

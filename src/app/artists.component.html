@@ -9,7 +9,10 @@
     <li *ngFor="let artist of artists" 
       [class.selected]="artist === selectedArtist"
       (click)="onSelect(artist)">
-      <span class="badge">{{artist.id}}</span> {{artist.name}} is a {{artist.speciality}} hero
+      <span class="badge">{{artist.id}}</span>
+      <span>{{artist.name}} is a {{artist.speciality}} hero</span>
+      <button class="delete" (click)="delete(artist); $event.stopPropagation()">x</button>
+    </li>
   </ul>
   <div *ngIf="selectedArtist">
     <h2>

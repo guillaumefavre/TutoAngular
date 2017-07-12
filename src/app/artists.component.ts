@@ -46,4 +46,13 @@ export class ArtistsComponent implements OnInit {
         this.selectedArtist = null;
       });
   }
+
+  delete(artist: Artist): void {
+    this.artistService
+        .delete(artist.id)
+        .then(() => {
+          this.artists = this.artists.filter(h => h !== artist);
+          if (this.selectedArtist === artist) { this.selectedArtist = null; }
+        });
+  }
 }
