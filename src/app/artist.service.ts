@@ -51,4 +51,12 @@ export class ArtistService {
 	    .then(() => artist)
 	    .catch(this.handleError);
 	}
+
+	create(nameParam: string, specialityParap: string): Promise<Artist> {
+	  return this.http
+	    .post(this.artistsUrl, JSON.stringify({name: nameParam, speciality: specialityParap}), {headers: this.headers})
+	    .toPromise()
+	    .then(res => res.json().data as Artist)
+	    .catch(this.handleError);
+	}
 }

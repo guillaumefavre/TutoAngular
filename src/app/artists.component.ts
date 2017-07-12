@@ -34,4 +34,16 @@ export class ArtistsComponent implements OnInit {
   gotoDetail(): void {
     this.router.navigate(['/detail', this.selectedArtist.id]);
   }
+
+  add(name: string, speciality: string): void {
+    name = name.trim();
+    if (!name || !speciality) { 
+      return; 
+    }
+    this.artistService.create(name, speciality)
+      .then(artist => {
+        this.artists.push(artist);
+        this.selectedArtist = null;
+      });
+  }
 }

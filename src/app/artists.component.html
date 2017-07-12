@@ -1,3 +1,10 @@
+  <div>
+    <label>Artist name:</label> <input #artistName />
+    <label>Artist speciality:</label> <input #artistSpeciality />
+    <button (click)="add(artistName.value, artistSpeciality.value); artistName.value=''; artistSpeciality.value=''">
+      Add
+    </button>
+  </div>
   <ul class="artists">
     <li *ngFor="let artist of artists" 
       [class.selected]="artist === selectedArtist"
