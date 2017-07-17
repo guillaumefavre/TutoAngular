@@ -8,6 +8,7 @@ import { ArtistDetailComponent } from './artist-detail.component'
 import { ArtistsComponent } from './artists.component';
 import { ArtistService } from './artist.service';
 import { DashboardComponent } from './dashboard.component'
+import { ArtistSearchComponent } from './artist-search.component'
 
 import { AppRoutingModule }     from './app-routing.module';
 
@@ -21,7 +22,8 @@ import { InMemoryDataService }  from './in-memory-data.service';
     AppComponent,
     ArtistDetailComponent,
     ArtistsComponent,
-    DashboardComponent
+    DashboardComponent,
+    ArtistSearchComponent
   ],
   imports: [
     BrowserModule,

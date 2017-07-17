@@ -1,0 +1,11 @@
+<div id="search-component">
+  <h4>Artist Search</h4>
+  <input #searchBox id="search-box" (keyup)="search(searchBox.value)" />
+  <div>
+    <div *ngFor="let artist of artists | async"
+         (click)="gotoDetail(artist)" class="search-result" > 
+         <!-- Le | permet de produire un tableau d'artistes à partir de l'observable du tableau "artists" -->
+      {{artist.name}}
+    </div>
+  </div>
+</div>
