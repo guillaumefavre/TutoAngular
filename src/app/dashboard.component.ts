@@ -11,12 +11,12 @@ import { ArtistService } from './artist.service';
 
 export class DashboardComponent implements OnInit {
 
-  artists: Artist[] = [];
+  topArtists: Artist[] = [];
 
   constructor(private artistService: ArtistService) { }
 
   ngOnInit(): void {
     this.artistService.getArtists()
-      .then(artists => this.artists = artists.slice(1, 3));
+      .then(artists => this.topArtists = artists.slice(1, 4));
   }
 }

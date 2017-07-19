@@ -23,11 +23,6 @@ export class ArtistService {
              .catch(this.handleError);
 	}
 
-	private handleError(error: any): Promise<any> {
-	  console.error('An error occurred !', error); // for demo purposes only
-	  return Promise.reject(error.message || error);
-	}
-
 	getArtist(id: number): Promise<Artist> {
 	  const url = `${this.artistsUrl}/${id}`;
 	  return this.http.get(url)
@@ -36,9 +31,9 @@ export class ArtistService {
 	    .catch(this.handleError);
 	}
 
+	// Fonction simulant une récupération des données avec un délai de latence
 	getArtistsSlowly(): Promise<Artist[]> {
 	  return new Promise(resolve => {
-	    // Simulate server latency with 2 second delay
 	    setTimeout(() => resolve(this.getArtists()), 2000);
 	  });
 	}
@@ -66,5 +61,11 @@ export class ArtistService {
 	    .toPromise()
 	    .then(() => null)
 	    .catch(this.handleError);
+	}
+
+	// Fonction de gestion des erreurs
+	private handleError(error: any): Promise<any> {
+	  console.error('An error occurred !', error); // for demo purposes only
+	  return Promise.reject(error.message || error);
 	}
 }

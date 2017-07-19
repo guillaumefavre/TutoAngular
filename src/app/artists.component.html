@@ -6,7 +6,7 @@
     </button>
   </div>
   <ul class="artists">
-    <li *ngFor="let artist of artists" 
+    <li *ngFor="let artist of artistsList" 
       [class.selected]="artist === selectedArtist"
       (click)="onSelect(artist)">
       <span class="badge">{{artist.id}}</span>

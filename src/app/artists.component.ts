@@ -12,7 +12,7 @@ import { ArtistService } from './artist.service';
   styleUrls: ['./artists.component.css'],
 })
 export class ArtistsComponent implements OnInit {
-  artists: Artist[];
+  artistsList: Artist[];
   selectedArtist: Artist;
 
   constructor(
@@ -24,7 +24,7 @@ export class ArtistsComponent implements OnInit {
   }
 
   getArtists(): void {
-    this.artistService.getArtists().then(artists => this.artists = artists);
+    this.artistService.getArtists().then(artists => this.artistsList = artists);
   }
 
   ngOnInit(): void {
@@ -42,7 +42,7 @@ export class ArtistsComponent implements OnInit {
     }
     this.artistService.create(name, speciality)
       .then(artist => {
-        this.artists.push(artist);
+        this.artistsList.push(artist);
         this.selectedArtist = null;
       });
   }
@@ -51,8 +51,10 @@ export class ArtistsComponent implements OnInit {
     this.artistService
         .delete(artist.id)
         .then(() => {
-          this.artists = this.artists.filter(h => h !== artist);
-          if (this.selectedArtist === artist) { this.selectedArtist = null; }
+          this.artistsList = this.artistsList.filter(h => h !== artist);
+          if (this.selectedArtist === artist) { 
+            this.selectedArtist = null; 
+          }
         });
   }
 }
